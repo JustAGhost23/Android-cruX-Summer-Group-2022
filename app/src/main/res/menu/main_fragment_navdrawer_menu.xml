@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/main_fragment">
+
+    <item
+        android:id="@+id/draftsFragment"
+        android:icon="@drawable/file_document_edit_outline"
+        android:title="@string/mainFragmentDrawerDraftsFragmentText" />
+    <item
+        android:id="@+id/detailsFragment"
+        android:icon="@drawable/account_details"
+        android:title="@string/mainFragmentDrawerDetailsFragmentText" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/information_outline"
+        android:title="@string/mainFragmentDrawerAboutFragmentText" />
+</menu>

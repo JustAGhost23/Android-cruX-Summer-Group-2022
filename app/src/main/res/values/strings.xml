@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TravelWriter</string>
+    <string name="firstTimeFragmentWelcomeText">Welcome to TravelWriter!\nPlease enter your name:</string>
+    <string name="firstTimeFragmentEditText">Name</string>
+    <string name="firstTimeFragmentButtonText">Proceed</string>
+    <string name="aboutFragmentTitle">About</string>
+    <string name="aboutFragmentText">About Text</string>
+    <string name="addArticleFragmentPostButtonText">Create Post</string>
+    <string name="addArticleFragmentSaveButtonText">Save as draft</string>
+    <string name="addArticleFragmentBodyText">Body</string>
+    <string name="addArticleFragmentTitleText">Title</string>
+    <string name="mainFragmentAddArticleButtonDescription">Go to Article</string>
+    <string name="mainFragmentDrawerLabel">TravelWriter</string>
+    <string name="mainFragmentDrawerDraftsFragmentText">Drafts</string>
+    <string name="mainFragmentDrawerDetailsFragmentText">Details</string>
+    <string name="mainFragmentDrawerAboutFragmentText">About</string>
+    <string name="draftsFragmentText">Drafts Fragment</string>
+    <string name="detailsFragmentText">Details Fragment</string>
+    <string name="articleFragmentText">Article Fragment</string>
+</resources>
