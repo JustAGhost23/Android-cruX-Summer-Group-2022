@@ -22,6 +22,7 @@ class FirstTimeFragment : Fragment() {
             container, false)
 
         val sharedPrefs = activity?.getPreferences(Context.MODE_PRIVATE)
+        sharedPrefs?.edit()?.putString("user", null)?.apply()
 
         binding.firstTimeFragmentButton.setOnClickListener{
             if (binding.firstTimeFragmentName.length() == 0){

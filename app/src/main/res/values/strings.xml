@@ -17,4 +17,5 @@
     <string name="draftsFragmentText">Drafts Fragment</string>
     <string name="detailsFragmentText">Details Fragment</string>
     <string name="articleFragmentText">Article Fragment</string>
+    <string name="mainFragmentDrawerLogoutText">Logout</string>
 </resources>

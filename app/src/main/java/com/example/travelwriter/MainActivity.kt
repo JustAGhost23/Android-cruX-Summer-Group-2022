@@ -1,14 +1,15 @@
 package com.example.travelwriter
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.travelwriter.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,8 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPrefs = this.getPreferences(Context.MODE_PRIVATE)
         val user = sharedPrefs.getString("user", null)
-        //sharedPrefs.edit().remove("user").apply()
-        //For Testing Purposes to remove the saved username
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.mainFragmentNavView, navController)

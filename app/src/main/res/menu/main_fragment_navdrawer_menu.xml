@@ -15,4 +15,8 @@
         android:id="@+id/aboutFragment"
         android:icon="@drawable/information_outline"
         android:title="@string/mainFragmentDrawerAboutFragmentText" />
+    <item
+        android:id="@+id/firstTimeFragment"
+        android:icon="@drawable/power"
+        android:title="@string/mainFragmentDrawerLogoutText" />
 </menu>
