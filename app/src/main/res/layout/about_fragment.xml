@@ -17,6 +17,7 @@
             android:text="@string/aboutFragmentTitle"
             android:textSize="40sp"
             android:textStyle="bold|italic"
+            android:layout_marginStart="10sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/aboutFragmentText" />
 
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/aboutFragmentText"
             android:textSize="20sp"
+            android:layout_marginStart="10sp"
             android:layout_marginTop="30sp"
             app:layout_constraintTop_toBottomOf="@id/aboutFragmentTitle"
             app:layout_constraintStart_toStartOf="parent" />

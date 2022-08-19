@@ -1,5 +1,6 @@
 package com.example.travelwriter
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -22,8 +23,31 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         drawerLayout = binding.mainFragmentDrawerLayout
 
+        val sharedPrefs = this.getPreferences(Context.MODE_PRIVATE)
+        val user = sharedPrefs.getString("user", null)
+        //sharedPrefs.edit().remove("user").apply()
+        //For Testing Purposes to remove the saved username
+
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.mainFragmentNavView, navController)
+
+        if(user == null) {
+            navController.navigate(MainFragmentDirections.actionMainFragmentToFirstTimeFragment())
+        }
+
+        navController.addOnDestinationChangedListener { navC, navD, args ->
+            if(navD.id == navC.graph.startDestinationId) {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            }
+            else {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+
+            if(navD.id == R.id.firstTimeFragment) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                supportActionBar?.setHomeButtonEnabled(false)
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
