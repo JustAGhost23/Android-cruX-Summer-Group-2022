@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/firstTimeFragment"
-        android:name="com.example.travelwriter.FirstTimeFragment"
+        android:name="com.example.travelwriter.firstTimeFragment.FirstTimeFragment"
         android:label="Welcome Screen"
         tools:layout="@layout/first_time_fragment" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.travelwriter.MainFragment"
+        android:name="com.example.travelwriter.mainFragment.MainFragment"
         android:label="Home Screen"
         tools:layout="@layout/main_fragment" >
         <action
@@ -42,26 +42,32 @@
     </fragment>
     <fragment
         android:id="@+id/addArticleFragment"
-        android:name="com.example.travelwriter.AddArticleFragment"
+        android:name="com.example.travelwriter.addArticleFragment.AddArticleFragment"
         android:label="Add Article"
         tools:layout="@layout/add_article_fragment" >
         <action
             android:id="@+id/action_addArticleFragment_to_draftsFragment"
             app:destination="@id/draftsFragment"
-            app:popUpTo="@id/addArticleFragment" />
+            app:popUpTo="@id/addArticleFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_addArticleFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popUpTo="@id/addArticleFragment" />
+            app:popUpTo="@id/addArticleFragment"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="articleId"
+            android:defaultValue="-1"
+            app:argType="integer"/>
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.travelwriter.ArticleFragment"
+        android:name="com.example.travelwriter.articleFragment.ArticleFragment"
         android:label="Article"
         tools:layout="@layout/article_fragment" />
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.travelwriter.DetailsFragment"
+        android:name="com.example.travelwriter.detailsFragment.DetailsFragment"
         android:label="Details"
         tools:layout="@layout/details_fragment" />
     <fragment
@@ -71,7 +77,7 @@
         tools:layout="@layout/about_fragment" />
     <fragment
         android:id="@+id/draftsFragment"
-        android:name="com.example.travelwriter.DraftsFragment"
+        android:name="com.example.travelwriter.draftsFragment.DraftsFragment"
         android:label="Drafts"
         tools:layout="@layout/drafts_fragment" >
         <action

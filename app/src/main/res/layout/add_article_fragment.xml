@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="addArticleFragmentViewModel"
+            type="com.example.travelwriter.addArticleFragment.AddArticleFragmentViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddArticleFragment">
+        tools:context=".addArticleFragment.AddArticleFragment">
 
         <EditText
             android:id="@+id/addArticleFragmentTitle"
@@ -14,6 +19,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/addArticleFragmentTitleText"
             android:inputType="text"
+            android:text="@{addArticleFragmentViewModel.currentDraft.title}"
             android:minHeight="48dp"
             android:autofillHints=""
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +33,7 @@
             android:gravity="top"
             android:hint="@string/addArticleFragmentBodyText"
             android:inputType="textMultiLine"
+            android:text="@{addArticleFragmentViewModel.currentDraft.body}"
             android:minHeight="200sp"
             android:maxHeight="400sp"
             android:autofillHints=""

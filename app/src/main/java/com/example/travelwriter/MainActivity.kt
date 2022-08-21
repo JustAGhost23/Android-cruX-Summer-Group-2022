@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.travelwriter.databinding.ActivityMainBinding
+import com.example.travelwriter.mainFragment.MainFragmentDirections
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(MainFragmentDirections.actionMainFragmentToFirstTimeFragment())
         }
 
-        navController.addOnDestinationChangedListener { navC, navD, args ->
+        navController.addOnDestinationChangedListener { navC, navD, _ ->
             if(navD.id == navC.graph.startDestinationId) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             }

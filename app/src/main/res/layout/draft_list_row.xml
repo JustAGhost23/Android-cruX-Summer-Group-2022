@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+        <variable
+            name="Article"
+            type="com.example.travelwriter.database.Article" />
+
+        <variable
+            name="ArticleClickListener"
+            type="com.example.travelwriter.draftsFragment.ArticleClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:background="@drawable/custom_border">
+
+        <TextView
+            android:id="@+id/articleTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@{Article.title}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deleteListItemButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/deleteListItemButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_delete"
+            android:contentDescription="@string/deleteListItemButtonDescription"
+            android:layout_marginEnd="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/articleTitleTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{(view) -> ArticleClickListener.onClickDelete(Article)}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

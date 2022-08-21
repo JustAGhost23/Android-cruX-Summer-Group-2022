@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
-        tools:context=".FirstTimeFragment">
+        tools:context=".firstTimeFragment.FirstTimeFragment">
 
         <TextView
             android:id="@+id/firstTimeFragmentText"
