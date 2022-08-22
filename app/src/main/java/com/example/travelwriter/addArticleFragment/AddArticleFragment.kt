@@ -26,10 +26,15 @@ class AddArticleFragment : Fragment() {
         val database = ArticleDatabase.getDatabase(this.requireActivity().application).articleDao
         val args = AddArticleFragmentArgs.fromBundle(requireArguments())
         val user = sharedPrefs?.getString("user", null)
+        val articleId = sharedPrefs?.getInt("articleID", -1)
 
         viewModel = ViewModelProvider(this, AddArticleFragmentViewModelFactory(database, args.articleId, user!!))[AddArticleFragmentViewModel::class.java]
-        binding= DataBindingUtil.inflate(inflater, R.layout.add_article_fragment,
+        binding = DataBindingUtil.inflate(inflater, R.layout.add_article_fragment,
             container, false)
+
+
+        binding.addArticleFragmentTitle.setText(viewModel.loadTitle(articleId!!))
+        binding.addArticleFragmentBody.setText(viewModel.loadBody(articleId))
 
         viewModel.navigateToMain.observe(viewLifecycleOwner) { go ->
             if (go) {

@@ -66,6 +66,32 @@ class AddArticleFragmentViewModel(
     fun updateBody(body: String) {
         currentDraft.value!!.body = body
     }
+    fun loadTitle(articleId: Int): String {
+        if(articleId == -1) {
+            currentDraft.value!!.title = ""
+        }
+        else {
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    currentDraft.postValue(database.getArticle(articleId))
+                }
+            }
+        }
+        return currentDraft.value!!.title
+    }
+    fun loadBody(articleId: Int): String {
+        if(articleId == -1) {
+            currentDraft.value!!.body = ""
+        }
+        else {
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    currentDraft.postValue(database.getArticle(articleId))
+                }
+            }
+        }
+        return currentDraft.value!!.body
+    }
     fun createPost() {
         if (currentDraft.value!!.title.isBlank()) {
             _validInput.value = false

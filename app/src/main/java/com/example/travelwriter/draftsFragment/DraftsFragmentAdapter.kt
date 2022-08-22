@@ -2,8 +2,6 @@ package com.example.travelwriter.draftsFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +16,9 @@ class DraftsDiffCallback: DiffUtil.ItemCallback<Article>() {
         return oldArticle.id == newArticle.id
     }
 }
-class DraftsAdapter(private val articleClickListener: ArticleClickListener)
+class DraftsAdapter(private val openArticleClickListener: ArticleClickListener,
+                    private val deleteArticleClickListener: ArticleClickListener
+)
     : ListAdapter<Article, RecyclerView.ViewHolder>(DraftsDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder.from(parent)
@@ -27,7 +27,7 @@ class DraftsAdapter(private val articleClickListener: ArticleClickListener)
         when (viewHolder) {
             is ViewHolder -> {
                 val item = getItem((position)) as Article
-                viewHolder.bind(item, articleClickListener)
+                viewHolder.bind(item, openArticleClickListener, deleteArticleClickListener)
             }
         }
     }
@@ -41,14 +41,23 @@ class DraftsAdapter(private val articleClickListener: ArticleClickListener)
         }
         fun bind(
             article: Article,
-            articleClickListener: ArticleClickListener
+            openArticleClickListener: ArticleClickListener,
+            deleteArticleClickListener: ArticleClickListener
         ) {
             binding.article = article
-            binding.articleClickListener = articleClickListener
+            binding.articleClickListener = openArticleClickListener
+            binding.deleteListItemButton.setOnClickListener {
+                deleteArticleClickListener.onClickDelete(article)
+            }
             binding.executePendingBindings()
         }
     }
 }
 class ArticleClickListener(val articleClickListener: (articleId: Int) -> Unit) {
-    fun onClickDelete(article: Article) = articleClickListener(article.id)
+    fun onClickDelete(article: Article) {
+        articleClickListener(article.id)
+    }
+    fun onClickOpen(article: Article) {
+        articleClickListener(article.id)
+    }
 }

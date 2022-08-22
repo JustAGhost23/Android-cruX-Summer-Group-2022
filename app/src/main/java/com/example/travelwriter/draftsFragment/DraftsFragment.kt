@@ -1,5 +1,6 @@
 package com.example.travelwriter.draftsFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.travelwriter.R
 import com.example.travelwriter.database.ArticleDatabase
 import com.example.travelwriter.databinding.DraftsFragmentBinding
@@ -20,8 +22,11 @@ class DraftsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val sharedPrefs = activity?.getPreferences(Context.MODE_PRIVATE)
         val database = ArticleDatabase.getDatabase(this.requireActivity().application).articleDao
         val adapter = DraftsAdapter(ArticleClickListener { articleId ->
+            viewModel.openArticleWithId(articleId, sharedPrefs!!)
+        }, ArticleClickListener { articleId ->
             viewModel.deleteArticleWithId(articleId)
         })
 
@@ -32,6 +37,16 @@ class DraftsFragment : Fragment() {
         viewModel.articleList.observe(viewLifecycleOwner){ list ->
             list?.let{
                 adapter.submitList(it)
+            }
+        }
+
+        viewModel.navigateToAddArticle.observe(viewLifecycleOwner) { go ->
+            if (go) {
+                this.findNavController().navigate(
+                    DraftsFragmentDirections
+                        .actionDraftsFragmentToAddArticleFragment()
+                )
+                viewModel.navigatedToAddArticle()
             }
         }
 

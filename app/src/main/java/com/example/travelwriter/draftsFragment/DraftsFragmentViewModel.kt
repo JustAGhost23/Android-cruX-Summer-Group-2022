@@ -1,6 +1,9 @@
 package com.example.travelwriter.draftsFragment
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.*
+import com.example.travelwriter.database.Article
 import com.example.travelwriter.database.ArticleDAO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -9,6 +12,19 @@ import kotlinx.coroutines.withContext
 class DraftsFragmentViewModel(
     private val database: ArticleDAO
 ): ViewModel() {
+    private val currentDraft = MutableLiveData<Article>()
+
+    val articleList = database.getAllArticles()
+
+    private val _navigateToAddArticle = MutableLiveData<Boolean>()
+    val navigateToAddArticle: LiveData<Boolean>
+        get() = _navigateToAddArticle
+    fun navigatedToAddArticle() {
+        _navigateToAddArticle.value = false
+    }
+    init {
+        _navigateToAddArticle.value = false
+    }
     fun deleteArticleWithId(articleId: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -16,7 +32,22 @@ class DraftsFragmentViewModel(
             }
         }
     }
-    val articleList = database.getAllArticles()
+    fun openArticleWithId(articleId: Int, sharedPrefs: SharedPreferences) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                currentDraft.postValue(database.getArticle(articleId))
+            }
+        }
+        _navigateToAddArticle.value = true
+        saveArticleId(articleId, sharedPrefs)
+    }
+    private fun saveArticleId(articleId: Int, sharedPrefs: SharedPreferences) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                sharedPrefs.edit()?.putInt("articleID", articleId)?.apply()
+            }
+        }
+    }
 }
 
 class DraftsFragmentViewModelFactory(

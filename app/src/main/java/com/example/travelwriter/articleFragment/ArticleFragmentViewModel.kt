@@ -3,6 +3,7 @@ package com.example.travelwriter.articleFragment
 import androidx.lifecycle.*
 
 class ArticleFragmentViewModel: ViewModel() {
+
 }
 class ArticleFragmentViewModelFactory(): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
