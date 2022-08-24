@@ -1,5 +1,6 @@
 package com.example.travelwriter.draftsFragment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,7 +28,21 @@ class DraftsFragment : Fragment() {
         val adapter = DraftsAdapter(ArticleClickListener { articleId ->
             viewModel.openArticleWithId(articleId, sharedPrefs!!)
         }, ArticleClickListener { articleId ->
-            viewModel.deleteArticleWithId(articleId)
+            val alertDialogBuilder: AlertDialog.Builder? = activity?.let {
+                AlertDialog.Builder(it)
+            }
+            alertDialogBuilder?.setMessage(R.string.deleteAlertDialogBoxMessage)!!
+                .setCancelable(false)
+                .setPositiveButton("Proceed") { dialog, _ ->
+                    viewModel.deleteArticleWithId(articleId)
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.cancel()
+                }
+            val alertDialog: AlertDialog = alertDialogBuilder.create()
+            alertDialog.setTitle(R.string.deleteAlertDialogBoxTitle)
+            alertDialog.show()
         })
 
         viewModel = ViewModelProvider(this, DraftsFragmentViewModelFactory(database))[DraftsFragmentViewModel::class.java]

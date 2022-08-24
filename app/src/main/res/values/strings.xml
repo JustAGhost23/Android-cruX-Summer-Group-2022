@@ -20,4 +20,6 @@
     <string name="mainFragmentDrawerLogoutText">Logout</string>
     <string name="articleTitleTextViewText">Article Title</string>
     <string name="deleteListItemButtonDescription">Delete Button</string>
+    <string name="deleteAlertDialogBoxTitle">Delete Draft</string>
+    <string name="deleteAlertDialogBoxMessage">Are you sure you want to delete this draft?</string>
 </resources>

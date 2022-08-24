@@ -11,7 +11,7 @@ interface ArticleDAO {
     @Query("SELECT * FROM drafts ORDER BY id DESC")
     fun getAllArticles(): LiveData<List<Article>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertArticle(article: Article)
 
     @Update

@@ -49,7 +49,7 @@ class AddArticleFragmentViewModel(
     }
 
     private suspend fun insertArticle(article: Article) {
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             database.insertArticle(article)
         }
     }
