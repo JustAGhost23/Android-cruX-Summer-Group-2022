@@ -11,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.travelwriter.R
-import com.example.travelwriter.database.Article
-import com.example.travelwriter.database.ArticleDatabase
 import com.example.travelwriter.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
@@ -25,12 +23,11 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val sharedPrefs = activity?.getPreferences(Context.MODE_PRIVATE)
-        val database = ArticleDatabase.getDatabase(this.requireActivity().application).articleDao
         sharedPrefs?.edit()?.putInt("articleID", -1)?.apply()
 
         viewModel = ViewModelProvider(
             this,
-            MainFragmentViewModelFactory(database)
+            MainFragmentViewModelFactory()
         )[MainFragmentViewModel::class.java]
         binding = DataBindingUtil.inflate(
             inflater, R.layout.main_fragment,

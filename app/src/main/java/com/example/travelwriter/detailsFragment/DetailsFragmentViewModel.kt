@@ -14,25 +14,53 @@ class DetailsFragmentViewModel(
     private val database: ArticleDAO,
     private val sharedPrefs: SharedPreferences
 ): ViewModel() {
+    var userListString = MutableLiveData<String>()
+
+    var userList = MutableLiveData<List<String>>()
+
     var postedArticleCount = MutableLiveData<Int>()
 
     val articleCount = database.getArticleCount()
     init {
-        getArticlesFromFirebase()
+        userList.value = arrayListOf()
+        getUsers()
     }
-    private fun getArticlesFromFirebase() {
-        ArticleApi.retrofitService.getArticleCount(sharedPrefs.getString("user", null)!!).enqueue( object: Callback<String> {
-
+    private fun getUsers() {
+        ArticleApi.retrofitService.getArticles().enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                val jsonObj = JSONObject(response.body()!!)
-                val map = jsonObj.toMap()
-                postedArticleCount.value = map.size
+                userListString.postValue(response.body())
             }
-
             override fun onFailure(call: Call<String>, t: Throwable) {
                 println("Failed")
             }
         })
+    }
+    fun stringToUserList(string: String) {
+        val jsonObj = JSONObject(string)
+        val map = jsonObj.toMap()
+        val usersList: List<String> = map.keys.toList()
+        userList.postValue(usersList)
+    }
+    fun getArticlesFromFirebaseWithName() {
+        val completeUserList: List<String>? = userList.value
+        if (completeUserList != null) {
+            if(sharedPrefs.getString("user", null)!! in completeUserList){
+                ArticleApi.retrofitService.getArticleCount(sharedPrefs.getString("user", null)!!).enqueue( object: Callback<String> {
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        val jsonObj = JSONObject(response.body()!!)
+                        val map = jsonObj.toMap()
+                        postedArticleCount.postValue(map.size)
+                    }
+
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        println("Failed")
+                    }
+                })
+            }
+            else {
+                postedArticleCount.postValue(0)
+            }
+        }
     }
     fun JSONObject.toMap(): Map<String, *> = keys().asSequence().associateWith {
         when (val value = this[it])

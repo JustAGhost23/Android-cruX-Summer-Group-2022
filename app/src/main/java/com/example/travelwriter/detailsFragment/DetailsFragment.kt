@@ -41,6 +41,16 @@ class DetailsFragment : Fragment() {
                 binding.detailsFragmentPostsText.text = "Articles Posted: $postedArticleCount"
             }
         }
+        viewModel.userListString.observe(viewLifecycleOwner) { string ->
+            string?.let {
+                viewModel.stringToUserList(viewModel.userListString.value!!)
+            }
+        }
+        viewModel.userList.observe(viewLifecycleOwner) { list ->
+            list?.let {
+                viewModel.getArticlesFromFirebaseWithName()
+            }
+        }
 
         return binding.root
     }

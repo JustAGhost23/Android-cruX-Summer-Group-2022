@@ -1,5 +1,6 @@
 package com.example.travelwriter.addArticleFragment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -62,9 +63,23 @@ class AddArticleFragment : Fragment() {
                     binding.addArticleFragmentTitle.error = "Please add a title"
                 }
             }
-            viewModel.updateTitle(binding.addArticleFragmentTitle.text.toString())
-            viewModel.updateBody(binding.addArticleFragmentBody.text.toString())
-            viewModel.createPost()
+            val alertDialogBuilder: AlertDialog.Builder? = activity?.let {
+                AlertDialog.Builder(it)
+            }
+            alertDialogBuilder?.setMessage(R.string.createPostDialogBoxMessage)!!
+                .setCancelable(false)
+                .setPositiveButton("Proceed") { dialog, _ ->
+                    viewModel.updateTitle(binding.addArticleFragmentTitle.text.toString())
+                    viewModel.updateBody(binding.addArticleFragmentBody.text.toString())
+                    viewModel.createPost()
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.cancel()
+                }
+            val alertDialog: AlertDialog = alertDialogBuilder.create()
+            alertDialog.setTitle(R.string.createPostDialogBoxTitle)
+            alertDialog.show()
         }
         binding.addArticleFragmentSaveButton.setOnClickListener {
             viewModel.validInput.observe(viewLifecycleOwner) { go ->

@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import androidx.lifecycle.*
 import com.example.travelwriter.database.Article
 import com.example.travelwriter.database.ArticleApi
-import com.example.travelwriter.database.ArticleDAO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -15,11 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainFragmentViewModel(
-    private val database: ArticleDAO
-): ViewModel() {
-    private val currentDraft = MutableLiveData<Article>()
-
+class MainFragmentViewModel(): ViewModel() {
     val postedArticleListString = MutableLiveData<String>()
 
     val postedArticleList = MutableLiveData<MutableList<Article>>()
@@ -97,13 +92,11 @@ class MainFragmentViewModel(
         }
     }
 }
-class MainFragmentViewModelFactory(
-    private val database: ArticleDAO
-): ViewModelProvider.Factory {
+class MainFragmentViewModelFactory(): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainFragmentViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return MainFragmentViewModel(database) as T
+            return MainFragmentViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
