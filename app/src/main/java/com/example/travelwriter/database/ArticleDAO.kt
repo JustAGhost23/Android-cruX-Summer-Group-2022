@@ -11,6 +11,12 @@ interface ArticleDAO {
     @Query("SELECT * FROM drafts ORDER BY id DESC")
     fun getAllArticles(): LiveData<List<Article>>
 
+    @Query("SELECT COUNT(id) FROM drafts")
+    fun getArticleCount(): LiveData<Int>
+
+    @Query("DELETE FROM drafts")
+    fun nukeTable()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertArticle(article: Article)
 

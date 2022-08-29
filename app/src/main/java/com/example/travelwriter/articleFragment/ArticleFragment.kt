@@ -1,5 +1,6 @@
 package com.example.travelwriter.articleFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +20,21 @@ class ArticleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val sharedPrefs = activity?.getPreferences(Context.MODE_PRIVATE)
+        val postedArticleTitle = sharedPrefs?.getString("postedArticleTitle", null)
+        val postedArticleBody = sharedPrefs?.getString("postedArticleBody", null)
+        println(postedArticleBody)
+        println(postedArticleTitle)
+
         viewModel = ViewModelProvider(this, ArticleFragmentViewModelFactory())[ArticleFragmentViewModel::class.java]
         binding = DataBindingUtil.inflate(inflater, R.layout.article_fragment, container,
             false)
+
+        binding.articleFragmentTitleText.text = postedArticleTitle
+        binding.articleFragmentBodyText.text = postedArticleBody
+
+        binding.lifecycleOwner = this
+        binding.articleFragmentViewModel = viewModel
 
         return binding.root
     }

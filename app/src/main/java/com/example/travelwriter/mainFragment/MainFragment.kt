@@ -9,10 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.travelwriter.R
+import com.example.travelwriter.database.Article
+import com.example.travelwriter.database.ArticleDatabase
 import com.example.travelwriter.databinding.MainFragmentBinding
-import com.example.travelwriter.detailsFragment.DetailsFragmentViewModel
-import com.example.travelwriter.detailsFragment.DetailsFragmentViewModelFactory
 
 class MainFragment : Fragment() {
     private lateinit var viewModel: MainFragmentViewModel
@@ -24,15 +25,52 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val sharedPrefs = activity?.getPreferences(Context.MODE_PRIVATE)
+        val database = ArticleDatabase.getDatabase(this.requireActivity().application).articleDao
         sharedPrefs?.edit()?.putInt("articleID", -1)?.apply()
-        viewModel = ViewModelProvider(this, MainFragmentViewModelFactory())[MainFragmentViewModel::class.java]
-        binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment,
-            container, false)
+
+        viewModel = ViewModelProvider(
+            this,
+            MainFragmentViewModelFactory(database)
+        )[MainFragmentViewModel::class.java]
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.main_fragment,
+            container, false
+        )
+        val adapter =
+            MainFragmentAdapter(viewModel.postedArticleList.value!!,
+                ArticleClickListener { article ->
+                viewModel.openArticleWithId(article, sharedPrefs!!)
+            })
+
+        viewModel.postedArticleListString.observe(viewLifecycleOwner) { string ->
+            string?.let {
+                viewModel.stringToMutableList(viewModel.postedArticleListString.value!!)
+            }
+        }
+        viewModel.postedArticleList.observe(viewLifecycleOwner) { list ->
+            list?.let {
+                adapter.updateDataSet(it)
+            }
+        }
+
+        viewModel.navigateToArticle.observe(viewLifecycleOwner) { go ->
+            if (go) {
+                this.findNavController().navigate(
+                    MainFragmentDirections
+                        .actionMainFragmentToArticleFragment()
+                )
+                viewModel.navigatedToArticle()
+            }
+        }
 
         binding.mainFragmentAddArticleButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(MainFragmentDirections.actionMainFragmentToAddArticleFragment())
         )
 
+        binding.mainFragmentList.adapter = adapter
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 }
+

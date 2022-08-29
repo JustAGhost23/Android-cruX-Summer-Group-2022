@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         drawerLayout = binding.mainFragmentDrawerLayout
 
+
+
         val sharedPrefs = this.getPreferences(Context.MODE_PRIVATE)
         val user = sharedPrefs.getString("user", null)
 

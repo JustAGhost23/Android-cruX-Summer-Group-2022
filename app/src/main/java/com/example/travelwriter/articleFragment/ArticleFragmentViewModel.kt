@@ -2,10 +2,8 @@ package com.example.travelwriter.articleFragment
 
 import androidx.lifecycle.*
 
-class ArticleFragmentViewModel: ViewModel() {
-
-}
-class ArticleFragmentViewModelFactory(): ViewModelProvider.Factory {
+class ArticleFragmentViewModel(): ViewModel() {}
+class ArticleFragmentViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ArticleFragmentViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

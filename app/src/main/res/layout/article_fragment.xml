@@ -2,24 +2,44 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="articleFragmentViewModel"
+            type="com.example.travelwriter.articleFragment.ArticleFragmentViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/articleFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:orientation="vertical"
         tools:context=".articleFragment.ArticleFragment">
 
         <TextView
-            android:id="@+id/articleFragmentText"
-            android:layout_width="wrap_content"
+            android:id="@+id/articleFragmentTitleText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/articleFragmentText"
-            android:textSize="25sp"
-            android:layout_marginBottom="50sp"
+            android:text=""
+            android:textSize="30sp"
+            android:textStyle="bold|italic"
+            android:layout_marginStart="10sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/articleFragmentBodyText"/>
+
+        <TextView
+            android:id="@+id/articleFragmentBodyText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textSize="15sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="50sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/articleFragmentTitleText"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

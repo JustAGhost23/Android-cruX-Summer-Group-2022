@@ -1,6 +1,5 @@
 package com.example.travelwriter.draftsFragment
 
-import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -32,6 +31,7 @@ class DraftsAdapter(private val openArticleClickListener: ArticleClickListener,
             }
         }
     }
+
     class ViewHolder private constructor(val binding: DraftListRowBinding): RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {

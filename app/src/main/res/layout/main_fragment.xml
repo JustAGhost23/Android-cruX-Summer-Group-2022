@@ -6,7 +6,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context="com.example.travelwriter.MainActivity">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainFragmentList"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toTopOf="@id/mainFragmentAddArticleButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/mainFragmentAddArticleButton"
@@ -18,6 +30,7 @@
             android:contentDescription="@string/mainFragmentAddArticleButtonDescription"
             android:focusable="true"
             android:backgroundTint="@color/green_500"
+            app:layout_constraintTop_toBottomOf="@id/mainFragmentList"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_input_add"

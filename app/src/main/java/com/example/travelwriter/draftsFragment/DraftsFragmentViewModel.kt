@@ -1,12 +1,9 @@
 package com.example.travelwriter.draftsFragment
 
-import android.app.AlertDialog
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.*
 import com.example.travelwriter.database.Article
 import com.example.travelwriter.database.ArticleDAO
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

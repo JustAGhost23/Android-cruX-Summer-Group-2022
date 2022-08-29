@@ -10,7 +10,7 @@
 
         <variable
             name="ArticleClickListener"
-            type="com.example.travelwriter.draftsFragment.ArticleClickListener" />
+            type="com.example.travelwriter.mainFragment.ArticleClickListener" />
 
     </data>
 
@@ -24,28 +24,33 @@
             android:id="@+id/articleTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="@{Article.title}"
+            android:layout_marginStart="15dp"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginStart="10sp"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/deleteListItemButton"
+            app:layout_constraintEnd_toStartOf="@id/articleTitleAuthorView"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp"
+            tools:text="@{Article.title}" />
 
-        <ImageButton
-            android:id="@+id/deleteListItemButton"
+        <TextView
+            android:id="@+id/articleTitleAuthorView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_delete"
-            android:contentDescription="@string/deleteListItemButtonDescription"
-            android:layout_marginEnd="20sp"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/black"
+            android:textSize="8sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/articleTitleTextView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/articleTitleTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp"
+            tools:text='@{"by " + Article.author}' />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
