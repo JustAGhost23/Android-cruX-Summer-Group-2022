@@ -29,7 +29,7 @@ class AddArticleFragment : Fragment() {
         val user = sharedPrefs?.getString("user", null)
         val articleId = sharedPrefs?.getInt("articleID", -1)
 
-        viewModel = ViewModelProvider(this, AddArticleFragmentViewModelFactory(database, args.articleId, user!!))[AddArticleFragmentViewModel::class.java]
+        viewModel = ViewModelProvider(this, AddArticleFragmentViewModelFactory(database, args.articleId, user!!, sharedPrefs))[AddArticleFragmentViewModel::class.java]
         binding = DataBindingUtil.inflate(inflater, R.layout.add_article_fragment,
             container, false)
 
@@ -92,6 +92,16 @@ class AddArticleFragment : Fragment() {
             viewModel.updateTitle(binding.addArticleFragmentTitle.text.toString())
             viewModel.updateBody(binding.addArticleFragmentBody.text.toString())
             viewModel.saveAsDraft()
+        }
+        viewModel.userListString.observe(viewLifecycleOwner) { string ->
+            string?.let {
+                viewModel.stringToUserList(viewModel.userListString.value!!)
+            }
+        }
+        viewModel.articleString.observe(viewLifecycleOwner) { string ->
+            string?.let {
+                viewModel.sendString(viewModel.articleString.value!!)
+            }
         }
         binding.lifecycleOwner = this
         binding.addArticleFragmentViewModel = viewModel

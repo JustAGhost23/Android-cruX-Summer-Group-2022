@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "drafts")
 data class Article(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    @PrimaryKey
+    var id: Int = kotlin.math.abs((0..999999999999).random()).toInt(),
 
     @ColumnInfo(name = "author")
     var author: String = "",
