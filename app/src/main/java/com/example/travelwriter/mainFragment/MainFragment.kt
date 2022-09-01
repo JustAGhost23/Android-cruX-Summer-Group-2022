@@ -41,12 +41,23 @@ class MainFragment : Fragment() {
 
         viewModel.postedArticleListString.observe(viewLifecycleOwner) { string ->
             string.let {
-                viewModel.stringToMutableList(viewModel.postedArticleListString.value!!)
+                if(string == "null") {
+                    viewModel.stringToMutableList("{}")
+                }
+                else {
+                    viewModel.stringToMutableList(viewModel.postedArticleListString.value!!)
+                }
             }
         }
         viewModel.postedArticleList.observe(viewLifecycleOwner) { list ->
-            list?.let {
+            list.let {
                 adapter.updateDataSet(it)
+                if(it.isNotEmpty()) {
+                    binding.emptyMainFragmentText.visibility = View.INVISIBLE
+                }
+                else {
+                    binding.emptyMainFragmentText.visibility = View.VISIBLE
+                }
             }
         }
 

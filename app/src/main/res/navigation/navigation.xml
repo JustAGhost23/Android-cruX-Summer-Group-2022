@@ -48,8 +48,8 @@
         <action
             android:id="@+id/action_addArticleFragment_to_draftsFragment"
             app:destination="@id/draftsFragment"
-            app:popUpTo="@id/addArticleFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="false"/>
         <action
             android:id="@+id/action_addArticleFragment_to_mainFragment"
             app:destination="@id/mainFragment"

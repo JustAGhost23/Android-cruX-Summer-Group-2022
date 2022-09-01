@@ -94,8 +94,13 @@ class AddArticleFragment : Fragment() {
             viewModel.saveAsDraft()
         }
         viewModel.userListString.observe(viewLifecycleOwner) { string ->
-            string?.let {
-                viewModel.stringToUserList(viewModel.userListString.value!!)
+            string.let {
+                if(string == "null") {
+                    viewModel.stringToUserList("{}")
+                }
+                else {
+                    viewModel.stringToUserList(viewModel.userListString.value!!)
+                }
             }
         }
         viewModel.articleString.observe(viewLifecycleOwner) { string ->

@@ -25,4 +25,5 @@
     <string name="createPostDialogBoxTitle">Create Post</string>
     <string name="createPostDialogBoxMessage">Are you sure you want to post this article?</string>
     <string name="emptyDraftListText">No drafts created yet</string>
+    <string name="emptyMainFragmentText">No Articles posted yet</string>
 </resources>
