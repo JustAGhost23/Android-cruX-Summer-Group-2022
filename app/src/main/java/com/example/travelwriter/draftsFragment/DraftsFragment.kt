@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.travelwriter.R
 import com.example.travelwriter.database.ArticleDatabase
 import com.example.travelwriter.databinding.DraftsFragmentBinding
@@ -52,6 +53,12 @@ class DraftsFragment : Fragment() {
         viewModel.articleList.observe(viewLifecycleOwner){ list ->
             list?.let{
                 adapter.submitList(it)
+                if(it.isNotEmpty()) {
+                    binding.emptyDraftsFragmentText.visibility = View.INVISIBLE
+                }
+                else {
+                    binding.emptyDraftsFragmentText.visibility = View.VISIBLE
+                }
             }
         }
 

@@ -24,4 +24,5 @@
     <string name="deleteAlertDialogBoxMessage">Are you sure you want to delete this draft?</string>
     <string name="createPostDialogBoxTitle">Create Post</string>
     <string name="createPostDialogBoxMessage">Are you sure you want to post this article?</string>
+    <string name="emptyDraftListText">No drafts created yet</string>
 </resources>

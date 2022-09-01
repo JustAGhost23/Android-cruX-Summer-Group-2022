@@ -40,7 +40,7 @@ class MainFragment : Fragment() {
             })
 
         viewModel.postedArticleListString.observe(viewLifecycleOwner) { string ->
-            string?.let {
+            string.let {
                 viewModel.stringToMutableList(viewModel.postedArticleListString.value!!)
             }
         }
