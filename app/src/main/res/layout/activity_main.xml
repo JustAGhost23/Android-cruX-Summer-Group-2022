@@ -26,6 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/main_fragment_navdrawer_menu"/>
+            app:menu="@menu/main_fragment_navdrawer_menu">
+        <TextView
+            android:id="@+id/mainFragmentNavDrawerText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|center_horizontal"
+            android:layout_marginBottom="10sp"
+            android:text="@string/app_name" />
+        </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
