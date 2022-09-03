@@ -23,8 +23,7 @@ class ArticleFragment : Fragment() {
         val sharedPrefs = activity?.getPreferences(Context.MODE_PRIVATE)
         val postedArticleTitle = sharedPrefs?.getString("postedArticleTitle", null)
         val postedArticleBody = sharedPrefs?.getString("postedArticleBody", null)
-        println(postedArticleBody)
-        println(postedArticleTitle)
+        val postedArticleAuthor = sharedPrefs?.getString("postedArticleAuthor", null)
 
         viewModel = ViewModelProvider(this, ArticleFragmentViewModelFactory())[ArticleFragmentViewModel::class.java]
         binding = DataBindingUtil.inflate(inflater, R.layout.article_fragment, container,
@@ -32,6 +31,7 @@ class ArticleFragment : Fragment() {
 
         binding.articleFragmentTitleText.text = postedArticleTitle
         binding.articleFragmentBodyText.text = postedArticleBody
+        binding.articleFragmentAuthorText.text = "by ${postedArticleAuthor}"
 
         binding.lifecycleOwner = this
         binding.articleFragmentViewModel = viewModel

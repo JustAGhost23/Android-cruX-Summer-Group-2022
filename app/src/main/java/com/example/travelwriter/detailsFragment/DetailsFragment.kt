@@ -31,7 +31,6 @@ class DetailsFragment : Fragment() {
         viewModel.articleCount.observe(viewLifecycleOwner){ list ->
             list?.let{
                 val articleCount = it
-                println(articleCount)
                 binding.detailsFragmentDraftsText.text = "Number of drafts: $articleCount"
             }
         }
@@ -42,8 +41,13 @@ class DetailsFragment : Fragment() {
             }
         }
         viewModel.userListString.observe(viewLifecycleOwner) { string ->
-            string?.let {
-                viewModel.stringToUserList(viewModel.userListString.value!!)
+            string.let {
+                if(string == "null") {
+                    viewModel.stringToUserList("{}")
+                }
+                else {
+                    viewModel.stringToUserList(viewModel.userListString.value!!)
+                }
             }
         }
         viewModel.userList.observe(viewLifecycleOwner) { list ->

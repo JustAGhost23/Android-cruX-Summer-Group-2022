@@ -12,25 +12,45 @@
 
         <TextView
             android:id="@+id/aboutFragmentTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/aboutFragmentTitle"
             android:textSize="40sp"
             android:textStyle="bold|italic"
+            android:gravity="center_horizontal"
             android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/aboutFragmentText" />
 
         <TextView
             android:id="@+id/aboutFragmentText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginTop="30sp"
+            android:gravity="center_horizontal"
             android:text="@string/aboutFragmentText"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutFragmentTitle" />
+
+        <TextView
+            android:id="@+id/aboutFragmentDetailsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/aboutFragmentDetailsText"
+            android:textSize="12sp"
+            android:gravity="bottom|center_horizontal"
             android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
             android:layout_marginTop="30sp"
-            app:layout_constraintTop_toBottomOf="@id/aboutFragmentTitle"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/aboutFragmentText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

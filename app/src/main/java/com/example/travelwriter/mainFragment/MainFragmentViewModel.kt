@@ -36,6 +36,7 @@ class MainFragmentViewModel(): ViewModel() {
             withContext(Dispatchers.IO) {
                 sharedPrefs.edit().putString("postedArticleTitle", article.title).apply()
                 sharedPrefs.edit().putString("postedArticleBody", article.body).apply()
+                sharedPrefs.edit().putString("postedArticleAuthor", article.author).apply()
             }
         }
         _navigateToArticle.value = true

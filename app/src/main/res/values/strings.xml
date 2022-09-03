@@ -3,8 +3,8 @@
     <string name="firstTimeFragmentWelcomeText">Welcome to TravelWriter!\nPlease enter your name:</string>
     <string name="firstTimeFragmentEditText">Name</string>
     <string name="firstTimeFragmentButtonText">Proceed</string>
-    <string name="aboutFragmentTitle">About</string>
-    <string name="aboutFragmentText">About Text</string>
+    <string name="aboutFragmentTitle">TravelWriter</string>
+    <string name="aboutFragmentText">A simple Android app where you can\nwrite text posts and post them on\na publicly available resource (or save\nthem as drafts before posting them\nlater), as well as access and read\nalready created posts by other users</string>
     <string name="addArticleFragmentPostButtonText">Create Post</string>
     <string name="addArticleFragmentSaveButtonText">Save as draft</string>
     <string name="addArticleFragmentBodyText">Body</string>
@@ -14,9 +14,6 @@
     <string name="mainFragmentDrawerDraftsFragmentText">Drafts</string>
     <string name="mainFragmentDrawerDetailsFragmentText">Details</string>
     <string name="mainFragmentDrawerAboutFragmentText">About</string>
-    <string name="draftsFragmentText">Drafts Fragment</string>
-    <string name="detailsFragmentText">Details Fragment</string>
-    <string name="articleFragmentText">Article Fragment</string>
     <string name="mainFragmentDrawerLogoutText">Logout</string>
     <string name="articleTitleTextViewText">Article Title</string>
     <string name="deleteListItemButtonDescription">Delete Button</string>
@@ -26,4 +23,5 @@
     <string name="createPostDialogBoxMessage">Are you sure you want to post this article?</string>
     <string name="emptyDraftListText">No drafts created yet</string>
     <string name="emptyMainFragmentText">No Articles posted yet</string>
+    <string name="aboutFragmentDetailsText">Discord:-Just_A_Ghost-#3907</string>
 </resources>
