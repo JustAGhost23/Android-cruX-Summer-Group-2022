@@ -21,7 +21,7 @@ class AddArticleFragmentViewModel(
     private val sharedPrefs: SharedPreferences
 ): ViewModel() {
     var articleString = MutableLiveData<String>()
-    var sentString = MutableLiveData<String>()
+    private var sentString = MutableLiveData<String>()
     var userListString = MutableLiveData<String>()
     private var userList = MutableLiveData<List<String>>()
 

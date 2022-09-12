@@ -17,5 +17,8 @@ interface ArticleApiService {
 
     @PATCH("{user}.json?")
     suspend fun postArticle(@Path("user") user: String, @Body body: String): Response<String>
+
+    @DELETE("{user}/{id}.json?")
+    suspend fun deleteArticle(@Path("user") user: String, @Path("id") id: String): Response<String>
 }
 

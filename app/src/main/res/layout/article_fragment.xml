@@ -2,16 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="articleFragmentViewModel"
-            type="com.example.travelwriter.articleFragment.ArticleFragmentViewModel" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/articleFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".articleFragment.ArticleFragment">
 
@@ -19,46 +14,57 @@
             android:id="@+id/articleFragmentTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text=""
             android:textSize="40sp"
             android:textStyle="bold|italic"
-            android:layout_marginStart="10sp"
-            android:layout_marginEnd="10sp"
-            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@id/articleFragmentBodyText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/articleFragmentBodyText"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/articleFragmentBodyText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="20sp"
-            android:layout_marginStart="10sp"
-            android:layout_marginEnd="10sp"
+            android:layout_height="0dp"
             android:layout_marginTop="30sp"
             android:gravity="center_horizontal"
+            android:text=""
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/articleFragmentAuthorText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/articleFragmentTitleText"
-            app:layout_constraintBottom_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/articleFragmentTitleText" />
 
         <TextView
             android:id="@+id/articleFragmentAuthorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:layout_marginBottom="10sp"
+            android:gravity="center_horizontal"
             android:text=""
             android:textSize="12sp"
-            android:layout_marginStart="10sp"
-            android:layout_marginEnd="10sp"
-            android:layout_marginTop="30sp"
-            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/articleFragmentBodyText"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/articleFragmentBodyText" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/articleFragmentDeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10sp"
+            android:layout_marginBottom="10sp"
+            android:visibility="visible"
+            android:clickable="true"
+            android:contentDescription="@string/mainFragmentAddArticleButtonDescription"
+            android:focusable="true"
+            android:backgroundTint="@color/green_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_delete"
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

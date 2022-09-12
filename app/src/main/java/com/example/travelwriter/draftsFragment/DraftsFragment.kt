@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.travelwriter.R
 import com.example.travelwriter.database.ArticleDatabase
 import com.example.travelwriter.databinding.DraftsFragmentBinding

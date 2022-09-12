@@ -14,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainFragmentViewModel(): ViewModel() {
+class MainFragmentViewModel: ViewModel() {
     val postedArticleListString = MutableLiveData<String>()
 
     val postedArticleList = MutableLiveData<MutableList<Article>>()
@@ -37,6 +37,7 @@ class MainFragmentViewModel(): ViewModel() {
                 sharedPrefs.edit().putString("postedArticleTitle", article.title).apply()
                 sharedPrefs.edit().putString("postedArticleBody", article.body).apply()
                 sharedPrefs.edit().putString("postedArticleAuthor", article.author).apply()
+                sharedPrefs.edit().putString("postedArticleId", article.id.toString()).apply()
             }
         }
         _navigateToArticle.value = true
@@ -93,7 +94,7 @@ class MainFragmentViewModel(): ViewModel() {
         }
     }
 }
-class MainFragmentViewModelFactory(): ViewModelProvider.Factory {
+class MainFragmentViewModelFactory: ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainFragmentViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

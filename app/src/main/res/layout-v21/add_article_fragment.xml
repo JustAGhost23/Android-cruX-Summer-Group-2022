@@ -10,22 +10,23 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".addArticleFragment.AddArticleFragment">
 
         <EditText
             android:id="@+id/addArticleFragmentTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/addArticleFragmentTitleText"
-            android:inputType="text"
-            android:text="@{addArticleFragmentViewModel.currentDraft.title}"
-            android:minHeight="48dp"
-            android:autofillHints=""
-            android:paddingStart="10sp"
-            android:paddingEnd="10sp"
             android:layout_marginStart="10sp"
             android:layout_marginEnd="10sp"
+            android:autofillHints=""
+            android:hint="@string/addArticleFragmentTitleText"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            android:text="@{addArticleFragmentViewModel.currentDraft.title}"
+            app:layout_constraintBottom_toTopOf="@id/addArticleFragmentBody"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,13 +34,12 @@
         <EditText
             android:id="@+id/addArticleFragmentBody"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:gravity="top"
             android:hint="@string/addArticleFragmentBodyText"
             android:inputType="textMultiLine"
             android:text="@{addArticleFragmentViewModel.currentDraft.body}"
-            android:minHeight="200sp"
-            android:maxHeight="400sp"
+            app:layout_constraintHeight_percent="0.5"
             android:autofillHints=""
             android:paddingStart="10sp"
             android:paddingEnd="10sp"
@@ -48,7 +48,8 @@
             android:layout_marginTop="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addArticleFragmentTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/addArticleFragmentTitle"
+            app:layout_constraintBottom_toTopOf="@id/addArticleFragmentPostButton"/>
 
         <Button
             android:id="@+id/addArticleFragmentPostButton"
@@ -60,7 +61,8 @@
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addArticleFragmentBody" />
+            app:layout_constraintTop_toBottomOf="@+id/addArticleFragmentBody"
+            app:layout_constraintBottom_toBottomOf="@id/addArticleFragmentSaveButton"/>
 
         <Button
             android:id="@+id/addArticleFragmentSaveButton"
@@ -70,7 +72,9 @@
             android:backgroundTint="@color/grey"
             android:text="@string/addArticleFragmentSaveButtonText"
             android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addArticleFragmentPostButton"
             tools:ignore="TextContrastCheck" />

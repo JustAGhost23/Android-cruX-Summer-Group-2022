@@ -64,7 +64,13 @@
         android:id="@+id/articleFragment"
         android:name="com.example.travelwriter.articleFragment.ArticleFragment"
         android:label="Article"
-        tools:layout="@layout/article_fragment" />
+        tools:layout="@layout/article_fragment" >
+        <action
+            android:id="@+id/action_articleFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/articleFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.travelwriter.detailsFragment.DetailsFragment"
