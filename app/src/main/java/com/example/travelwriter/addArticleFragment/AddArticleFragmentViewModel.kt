@@ -58,7 +58,9 @@ class AddArticleFragmentViewModel(
         }
         else {
             viewModelScope.launch {
-                currentDraft.value = database.getArticle(articleId)
+                withContext(Dispatchers.IO) {
+                    currentDraft.postValue(database.getArticle(articleId))
+                }
             }
         }
     }

@@ -57,12 +57,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5sp"
             android:backgroundTint="@color/green_500"
+            android:insetLeft="10dp"
+            android:insetRight="10dp"
             android:text="@string/addArticleFragmentPostButtonText"
             android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@id/addArticleFragmentSaveButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addArticleFragmentBody"
-            app:layout_constraintBottom_toBottomOf="@id/addArticleFragmentSaveButton"/>
+            app:layout_constraintTop_toBottomOf="@+id/addArticleFragmentBody" />
 
         <Button
             android:id="@+id/addArticleFragmentSaveButton"
@@ -70,6 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5sp"
             android:backgroundTint="@color/grey"
+            android:insetLeft="10dp"
+            android:insetRight="10dp"
             android:text="@string/addArticleFragmentSaveButtonText"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"

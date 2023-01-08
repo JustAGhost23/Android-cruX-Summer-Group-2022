@@ -28,6 +28,7 @@ class ArticleFragment : Fragment() {
         val postedArticleAuthor = sharedPrefs?.getString("postedArticleAuthor", null)
         val postedArticleId = sharedPrefs?.getString("postedArticleId", null)
         val user = sharedPrefs?.getString("user", null)
+        println(postedArticleId)
 
         viewModel = ViewModelProvider(this, ArticleFragmentViewModelFactory())[ArticleFragmentViewModel::class.java]
         binding = DataBindingUtil.inflate(inflater, R.layout.article_fragment, container,

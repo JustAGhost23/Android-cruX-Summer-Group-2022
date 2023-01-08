@@ -33,7 +33,6 @@ class AddArticleFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.add_article_fragment,
             container, false)
 
-
         binding.addArticleFragmentTitle.setText(viewModel.loadTitle(articleId!!))
         binding.addArticleFragmentBody.setText(viewModel.loadBody(articleId))
 
@@ -108,6 +107,7 @@ class AddArticleFragment : Fragment() {
                 viewModel.sendString(viewModel.articleString.value!!)
             }
         }
+
         binding.lifecycleOwner = this
         binding.addArticleFragmentViewModel = viewModel
 

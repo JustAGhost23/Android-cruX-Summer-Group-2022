@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.mainFragmentNavView, navController)
 
         if(user == null) {
-            navController.navigate(MainFragmentDirections.actionMainFragmentToFirstTimeFragment())
+            if(navController.currentDestination?.id == R.id.mainFragment) {
+                navController.navigate(MainFragmentDirections.actionMainFragmentToFirstTimeFragment())
+            }
         }
 
         navController.addOnDestinationChangedListener { navC, navD, _ ->
